@@ -4,6 +4,8 @@ namespace Alihan0\LaravelDorell\Common\Commands;
  
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
+
  
 class Dorell extends Command
 {
@@ -17,6 +19,16 @@ class Dorell extends Command
     {
         $name = $this->argument('name');
 
-        $this->info('seçilen isim: '.$name);
+        $controller_name = ucfirst($name).'Controller';
+        $model_name = ucfirst($name);
+
+        $controller_path = 'App/Http/Controller/';
+        $model_path = 'App/Http/Model';
+
+        Artisan::call('make:controller '.$controller_name);
+        Artisan::call('make:model '.$model_name);
+
+        $this->info('Controller ve model oluşturuldu');
+
     }
 }
