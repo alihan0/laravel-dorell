@@ -32,7 +32,7 @@ class Dorell extends Command
 
 
         //Model içerisi güncellensin
-        $filename = $model_path.$model_name;
+        $filename = $model_path.$model_name.'.php';
         $file_contents = file_get_contents($filename);
         $search = 'use HasFactory;';
         $insert = 'protected $table = "'.$name.'";';
