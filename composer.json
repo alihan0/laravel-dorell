@@ -1,7 +1,7 @@
 {
     "name": "alihan0/laravel-dorell",
     "description": "laravel boilerplate",
-    "type": "no",
+    "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
