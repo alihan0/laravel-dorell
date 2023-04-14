@@ -46,7 +46,7 @@ class Dorell extends Command
             file_put_contents($model_path, $file_contents);
             $this->info('Do:Rell -> "'.$model_name.'" content has been updated.');
         } else {
-            $this->info('!!! Do:Rell -> File not found!');
+            $this->info('!!! Do:Rell -> File not found! : '.$model_path);
         }
         
 
