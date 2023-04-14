@@ -26,9 +26,9 @@ class Dorell extends Command
         $model_path = app_path('Models/'.$model_name.'.php');
 
         Artisan::call('make:controller '.$controller_name);
-        $this->info('#Do:Rell "'.$controller_name.'" controller has been created.');
+        $this->info('- Do:Rell # "'.$controller_name.'" controller has been created.');
         Artisan::call('make:model '.$model_name);
-        $this->info('#Do:Rell "'.$model_name.'" model has been created.');
+        $this->info('- Do:Rell # "'.$model_name.'" model has been created.');
 
 
 
@@ -46,9 +46,9 @@ class Dorell extends Command
         
             // Dosyayı yeniden yazın
             file_put_contents($model_path, $file_contents);
-            $this->info('#Do:Rell "'.$model_name.'" model content has been updated.');
+            $this->info('- Do:Rell # "'.$model_name.'" model content has been updated.');
         } else {
-            $this->info('#Do:Rell ! Model File not found! : '.$model_path);
+            $this->info('- Do:Rell !! Model File not found! : '.$model_path);
         }
 
         ///Controller içeriği güncellensin
@@ -69,10 +69,10 @@ class Dorell extends Command
             ';
         
             // Dosyayı yeniden yazın
-            file_put_contents($controller_path, $file_contents);
-            $this->info('#Do:Rell "'.$controller_name.'" controller content has been updated.');
+            file_put_contents($controller_path, $insert);
+            $this->info('- Do:Rell # "'.$controller_name.'" controller content has been updated.');
         } else {
-            $this->info('#Do:Rell ! Controller File not found! : ' .$controller_name);
+            $this->info('- Do:Rell !! Controller File not found! : ' .$controller_name);
         }
         
 
