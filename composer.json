@@ -19,7 +19,7 @@
     "extra":{
         "laravel":{
             "providers": [
-                "Alihan0\\LaravelDorell\\DorellProvider"
+                "Alihan0\\LaravelDorell\\DorellServiceProvider"
             ]
         }
     }
