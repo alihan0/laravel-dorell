@@ -28,7 +28,7 @@ class Dorell extends Command
         Artisan::call('make:controller '.$controller_name);
         $this->info('Do:Rell -> "'.$controller_name.'" has been created.');
         Artisan::call('make:model '.$model_name);
-        $this->indo('Do:Rell -> "'.$model_name.'" has been created.');
+        $this->info('Do:Rell -> "'.$model_name.'" has been created.');
 
 
 
