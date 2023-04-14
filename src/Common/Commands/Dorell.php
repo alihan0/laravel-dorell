@@ -56,16 +56,86 @@ class Dorell extends Command
             $file_contents = file_get_contents($controller_path);
             $insert = '<?php
 
-            namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-            use Illuminate\Http\Request;
+use Illuminate\Http\Request;
+use App\Models\\'.$model_name.';
 
-            class '.$controller_name.' extends Controller
-            {
-                public function all(){
-                    return view("rell.layout.'.$name.'.all", ["'.$name.'" => '.$model_name.'::all()]);
-                }
+class '.$controller_name.' extends Controller
+{
+
+    // Response all post
+    protectef $response = ["type" => "warning", "message" => "'.$controller_name.' Response", "status" => false];
+
+    // List All Datas
+    public function all(){
+        return view("rell.layout.'.$name.'.all", ["'.$name.'" => '.$model_name.'::all()]);
+    }
+
+    // Detail Selected Data
+    public function detail($id){
+        return view("rell.layout.'.$name.'.detail", ["'.$name.'" => '.$model_name.'::find($id)]);
+    }
+
+    // Add Ne Data;
+    public function new(){
+        return view("rell.layout.'.$name.'.new");
+    }
+
+    // Edit Selected Data
+    public function edit($id){
+        return view("rell.layout.'.$name.'.edit", ["'.$name.'" => '.$model_name.'::find($id)]);
+    }
+
+    // Insert New Data
+    public function add(Request $request){
+        $'.$name.' = new '.$model_name.';
+        /* insert datas */
+
+        if($'.$name.'->save()){
+            $this->response["type] = "success";
+            $this->response["message"] = "New '.$model_name.' has been created.";
+            $this->response["status"] = true;
+        }else{
+            $this->reponse["type] = "error";
+            $this->response["message] = "SYSTEM_ERROR: Unknown insert failure";
+        }
+        return $this->response;
+    }
+
+    // Update Selected Data
+    public function update(Request $request){
+        $'.$name.' = '.$model_name.'::find($request->id);
+        /* other controls */
+
+        if($'.$name.'->save()){
+            $this->response["type] = "success";
+            $this->response["message"] = "'.$model_name.' has been updated.";
+            $this->response["status"] = true;
+        }else{
+            $this->reponse["type] = "error";
+            $this->response["message] = "SYSTEM_ERROR: Unknown insert failure";
+        }
+        return $this->response;
+    }
+
+    // Delete Selected Data
+    public function delete(Request $request){
+        $'.$name.' = '.$model_name.'::find($request->id);
+
+        if($'.$name.'){
+            if($'.$name.'->delete()){
+                $this->response["type] = "success";
+                $this->response["message"] = "'.$model_name.' row  has been deleted.";
+                $this->response["status"] = true;
+            }else{
+                $this->reponse["type] = "error";
+                $this->response["message] = "SYSTEM_ERROR: Unknown insert failure";
             }
+        }
+        return $this->response;
+    }
+}
             ';
         
             // Dosyayı yeniden yazın
