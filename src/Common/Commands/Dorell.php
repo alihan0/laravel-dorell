@@ -26,22 +26,29 @@ class Dorell extends Command
         $model_path = 'App/Http/Models/';
 
         Artisan::call('make:controller '.$controller_name);
+        $this->info('Do:Rell -> "'.$controller_name.'" has been created.');
         Artisan::call('make:model '.$model_name);
+        $this->indo('Do:Rell -> "'.$model_name.'" has been created.');
 
 
 
 
-        //Model içerisi güncellensin
-        $filename = $model_path.$model_name.'.php';
-        $file_contents = file_get_contents($filename);
-        $search = 'use HasFactory;';
-        $insert = 'protected $table = "'.$name.'";';
+        ///Model içeriği güncellensin
+        $filename = base_path($model_path.$model_name.'.php');
+        if (file_exists($filename)) {
+            $file_contents = file_get_contents($filename);
+            $search = 'use HasFactory;';
+            $insert = 'protected $table = "'.$name.'";';
 
-        // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
-        $file_contents = str_replace($search, $search . "\n\n" . $insert, $file_contents);
+            // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
+            $file_contents = str_replace($search, $search . "\n\n" . $insert, $file_contents);
 
-        // Dosyayı yeniden yazın
-        file_put_contents($filename, $file_contents);
+            // Dosyayı yeniden yazın
+            file_put_contents($filename, $file_contents);
+            $this->info('Do:Rell -> "'.$model_name.'" content has been updated.');
+        } else {
+            $this->info('!!! Do:Rell -> File not found!');
+        }
 
 
 
