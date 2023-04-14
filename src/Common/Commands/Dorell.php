@@ -37,10 +37,12 @@ class Dorell extends Command
         if (file_exists($model_path)) {
             $file_contents = file_get_contents($model_path);
             $search = 'use HasFactory;';
-            $insert = 'protected $table = "'.$name.'";';
+            $insert = '
+            protected $table = "'.$name.'";
+            ';
         
             // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
-            $file_contents = str_replace($search, $search . "\n" . $insert, $file_contents);
+            $file_contents = str_replace($search, $search . "\n\n" . $insert, $file_contents);
         
             // Dosyayı yeniden yazın
             file_put_contents($model_path, $file_contents);
@@ -52,21 +54,23 @@ class Dorell extends Command
         ///Controller içeriği güncellensin
         if (file_exists($controller_path)) {
             $file_contents = file_get_contents($controller_path);
-            $search = 'extends Controller {';
-            $insert = '
-            
-            public function all(){
-                return view("rell.layout.'.$name.'.all", ["'.$name.'" => '.$model_name.'::all()]);
-            }
+            $insert = '<?php
 
+            namespace App\Http\Controllers;
+
+            use Illuminate\Http\Request;
+
+            class '.$controller_name.' extends Controller
+            {
+                public function all(){
+                    return view("rell.layout.'.$name.'.all", ["'.$name.'" => '.$model_name.'::all()]);
+                }
+            }
             ';
-        
-            // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
-            $file_contents = str_replace($search, $search . "\n" . $insert, $file_contents);
         
             // Dosyayı yeniden yazın
             file_put_contents($controller_path, $file_contents);
-            $this->info('#Do:Rell "'.$controller_name.'" model content has been updated.');
+            $this->info('#Do:Rell "'.$controller_name.'" controller content has been updated.');
         } else {
             $this->info('#Do:Rell ! Controller File not found! : ' .$controller_name);
         }
