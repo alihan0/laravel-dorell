@@ -14,7 +14,7 @@ class DorellServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Alihan0\LaravelDorell\Common\Commands\Dorell::class
+                Common\Commands\Dorell::class
             ]);
         }
     }
