@@ -22,7 +22,7 @@ class Dorell extends Command
         $controller_name = ucfirst($name).'Controller';
         $model_name = ucfirst($name);
 
-        $controller_path = app_path('Controllers/'.$controller_name.'.php');
+        $controller_path = app_path('Http/Controllers/'.$controller_name.'.php');
         $model_path = app_path('Models/'.$model_name.'.php');
 
         Artisan::call('make:controller '.$controller_name);
