@@ -1,0 +1,19 @@
+{
+    "name": "alihan0/laravel-dorell",
+    "description": "laravel boilerplate",
+    "type": "no",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Alihan0\\LaravelDorell\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alihan Öztürk",
+            "email": "alihan@metatige.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
