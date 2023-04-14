@@ -35,19 +35,20 @@ class Dorell extends Command
 
         ///Model içeriği güncellensin
         if (file_exists($model_path)) {
-            $file_contents = file_get_contents($filename);
+            $file_contents = file_get_contents($model_path);
             $search = 'use HasFactory;';
             $insert = 'protected $table = "'.$name.'";';
-
+        
             // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
             $file_contents = str_replace($search, $search . "\n\n" . $insert, $file_contents);
-
+        
             // Dosyayı yeniden yazın
-            file_put_contents($filename, $file_contents);
+            file_put_contents($model_path, $file_contents);
             $this->info('Do:Rell -> "'.$model_name.'" content has been updated.');
         } else {
             $this->info('!!! Do:Rell -> File not found!');
         }
+        
 
 
 
