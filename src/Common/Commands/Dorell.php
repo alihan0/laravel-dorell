@@ -23,7 +23,7 @@ class Dorell extends Command
         $model_name = ucfirst($name);
 
         $controller_path = 'App/Http/Controller/';
-        $model_path = 'App/Http/Models/';
+        $model_path = app_path('Models/'.$model_name);
 
         Artisan::call('make:controller '.$controller_name);
         $this->info('Do:Rell -> "'.$controller_name.'" has been created.');
@@ -34,8 +34,7 @@ class Dorell extends Command
 
 
         ///Model içeriği güncellensin
-        $filename = base_path($model_path.$model_name.'.php');
-        if (file_exists($filename)) {
+        if (file_exists($model_path)) {
             $file_contents = file_get_contents($filename);
             $search = 'use HasFactory;';
             $insert = 'protected $table = "'.$name.'";';
