@@ -23,10 +23,29 @@ class Dorell extends Command
         $model_name = ucfirst($name);
 
         $controller_path = 'App/Http/Controller/';
-        $model_path = 'App/Http/Model';
+        $model_path = 'App/Http/Model/';
 
         Artisan::call('make:controller '.$controller_name);
         Artisan::call('make:model '.$model_name);
+
+
+
+
+        //Model içerisi güncellensin
+        $filename = $model_path.$model_name;
+        $file_contents = file_get_contents($filename);
+        $search = 'use HasFactory;';
+        $insert = 'protected $table = "'.$name.'";';
+
+        // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
+        $file_contents = str_replace($search, $search . "\n\n" . $insert, $file_contents);
+
+        // Dosyayı yeniden yazın
+        file_put_contents($filename, $file_contents);
+
+
+
+
 
         $this->info('Controller ve model oluşturuldu');
 
