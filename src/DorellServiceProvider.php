@@ -12,6 +12,6 @@ class DorellServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->info("provider okundu!");
+        dd("provider okundu!");
     }
 }
