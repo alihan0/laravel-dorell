@@ -22,13 +22,13 @@ class Dorell extends Command
         $controller_name = ucfirst($name).'Controller';
         $model_name = ucfirst($name);
 
-        $controller_path = 'App/Http/Controller/';
+        $controller_path = app_path('Controllers/'.$controller_name.'.php');
         $model_path = app_path('Models/'.$model_name.'.php');
 
         Artisan::call('make:controller '.$controller_name);
-        $this->info('#Do:Rell "'.$controller_name.'" has been created.');
+        $this->info('#Do:Rell "'.$controller_name.'" controller has been created.');
         Artisan::call('make:model '.$model_name);
-        $this->info('#Do:Rell "'.$model_name.'" has been created.');
+        $this->info('#Do:Rell "'.$model_name.'" model has been created.');
 
 
 
@@ -40,13 +40,35 @@ class Dorell extends Command
             $insert = 'protected $table = "'.$name.'";';
         
             // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
-            $file_contents = str_replace($search, $search . "\n\n" . $insert, $file_contents);
+            $file_contents = str_replace($search, $search . "\n" . $insert, $file_contents);
         
             // Dosyayı yeniden yazın
             file_put_contents($model_path, $file_contents);
-            $this->info('#Do:Rell "'.$model_name.'" content has been updated.');
+            $this->info('#Do:Rell "'.$model_name.'" model content has been updated.');
         } else {
-            $this->info('#Do:Rell ! File not found! : '.$model_path);
+            $this->info('#Do:Rell ! Model File not found! : '.$model_path);
+        }
+
+        ///Controller içeriği güncellensin
+        if (file_exists($controller_path)) {
+            $file_contents = file_get_contents($controller_path);
+            $search = 'extends Controller {';
+            $insert = '
+            
+            public function all(){
+                return view("rell.layout.'.$name.'.all", ["'.$name.'" => '.$model_name.'::all()]);
+            }
+
+            ';
+        
+            // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
+            $file_contents = str_replace($search, $search . "\n" . $insert, $file_contents);
+        
+            // Dosyayı yeniden yazın
+            file_put_contents($controller_path, $file_contents);
+            $this->info('#Do:Rell "'.$controller_name.'" model content has been updated.');
+        } else {
+            $this->info('#Do:Rell ! Controller File not found! : ' .$controller_name);
         }
         
 
