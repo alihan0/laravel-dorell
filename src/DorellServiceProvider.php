@@ -12,6 +12,10 @@ class DorellServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        dd("provider okundu!");
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Alihan0\LaravelDorell\Common\Commands\Dorell::class
+            ]);
+        }
     }
 }
