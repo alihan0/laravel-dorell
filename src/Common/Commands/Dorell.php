@@ -93,11 +93,11 @@ class '.$controller_name.' extends Controller
         /* insert datas */
 
         if($'.$name.'->save()){
-            $this->response["type] = "success";
+            $this->response["type"] = "success";
             $this->response["message"] = "New '.$model_name.' has been created.";
             $this->response["status"] = true;
         }else{
-            $this->reponse["type] = "error";
+            $this->reponse["type"] = "error";
             $this->response["message] = "SYSTEM_ERROR: Unknown insert failure";
         }
         return $this->response;
@@ -109,12 +109,12 @@ class '.$controller_name.' extends Controller
         /* other controls */
 
         if($'.$name.'->save()){
-            $this->response["type] = "success";
+            $this->response["type"] = "success";
             $this->response["message"] = "'.$model_name.' has been updated.";
             $this->response["status"] = true;
         }else{
             $this->reponse["type] = "error";
-            $this->response["message] = "SYSTEM_ERROR: Unknown insert failure";
+            $this->response["message"] = "SYSTEM_ERROR: Unknown insert failure";
         }
         return $this->response;
     }
@@ -125,12 +125,12 @@ class '.$controller_name.' extends Controller
 
         if($'.$name.'){
             if($'.$name.'->delete()){
-                $this->response["type] = "success";
+                $this->response["type"] = "success";
                 $this->response["message"] = "'.$model_name.' row  has been deleted.";
                 $this->response["status"] = true;
             }else{
-                $this->reponse["type] = "error";
-                $this->response["message] = "SYSTEM_ERROR: Unknown insert failure";
+                $this->reponse["type"] = "error";
+                $this->response["message"] = "SYSTEM_ERROR: Unknown insert failure";
             }
         }
         return $this->response;
