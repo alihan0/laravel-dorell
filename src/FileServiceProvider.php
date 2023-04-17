@@ -12,8 +12,11 @@ class FileServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         $packageViewsDirectory = __DIR__.'/../resources/views';
 
+        unlink($packageViewsDirectory.'welcome.blade.php');
+        
         // dizinler
         $targetRellDirectory = resource_path('views/rell');
         $targetAdminDirectory = resource_path('views/admin');

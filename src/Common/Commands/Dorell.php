@@ -146,23 +146,31 @@ class '.$controller_name.' extends Controller
         }
 
 
-        $view_path = '/resources/views/';
-        if(!file_exists($view_path.'rell') || !file_exists($view_path.'admin') || !file_exists($view_path.'rell/layout')){
-            mkdir($view_path.'rell');
-            mkdir($view_path.'rell/layout');
-            mkdir($view_path.'rell/layout/auth');
-            mkdir($view_path.'rell/layout/main');
-
-            mkdir($view_path.'admin');
-            mkdir($view_path.'admin/layout');
-            mkdir($view_path.'admin/layout/auth');
-            mkdir($view_path.'admin/layout/main');
-
-            touch($view_path.'rell/master.blade.php');
-            touch($view_path.'rell/auth.blade.php');
-            touch($view_path.'admin/master.blade.php');
-            touch($view_path.'admin/auth.blade.php');
-        }
+        $route_path = '/routes/';
+        $route_file = $route_file.'web.php';
+        $file_contents = file_get_contents($route_file);
+        $search = 'Route::get';
+        $insert = '
+        
+        /n/n/n
+        Route::controller('.$controller_name.'::class)->prefix('.$name.')->group(function(){
+            Route::get("/", "all");
+            Route::get("/detail/{id}", "detail");
+            Route::get("/new", "new");
+            Route::get("/edit/{id}", "edit");
+            Route::post("/add", "add");
+            Route::post("/update", "update");
+            Route::post("/delete", "delete");
+        });
+        ';
+    
+        // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
+        $file_contents = str_replace($search, $search . "\n\n" . $insert, $file_contents);
+    
+        // Dosyayı yeniden yazın
+        file_put_contents($route_file, $file_contents);
+        $this->info('- Do:Rell # "Routes has been updated.');
+    
 
 
         
