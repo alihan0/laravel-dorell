@@ -4,6 +4,7 @@ namespace Alihan0\LaravelDorell;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Console\Command;
 
 class FileServiceProvider extends ServiceProvider
 {
