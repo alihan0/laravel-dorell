@@ -113,7 +113,7 @@ class '.$controller_name.' extends Controller
             $this->response["message"] = "'.$model_name.' has been updated.";
             $this->response["status"] = true;
         }else{
-            $this->reponse["type] = "error";
+            $this->reponse["type"] = "error";
             $this->response["message"] = "SYSTEM_ERROR: Unknown insert failure";
         }
         return $this->response;
