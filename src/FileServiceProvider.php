@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Console\Command;
 
-class FileServiceProvider extends Command
+class FileServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -71,7 +71,7 @@ class FileServiceProvider extends Command
         File::put($adminLockFile, '');
         File::put($adminHomeFile, '');
 
-        $this->info('- Do:Rell # The folder structure has been created.');
+        $this->output->writeln("<info>- Do:Rell # The folder structure has been created.</info>");
         }
     }
 }
