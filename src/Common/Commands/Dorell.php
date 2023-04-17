@@ -148,9 +148,12 @@ class '.$controller_name.' extends Controller
 
         $route_path = base_path('routes/web.php');
         $file_contents = file_get_contents($route_path);
+        $search1 = 'Controller;';
+        $insert1 = '
+use App\Http\Controllers\\'.$controller_name.';
+';
         $search = '});';
         $insert = '
-
 // '.$name.' GROUP
 use App\Http\Controllers\\'.$controller_name.';
 Route::controller('.$controller_name.'::class)->prefix("'.$name.'")->group(function(){
@@ -165,9 +168,11 @@ Route::controller('.$controller_name.'::class)->prefix("'.$name.'")->group(funct
         ';
     
         // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
+        $file_contents1 = str_replace($search, $search1 . "\n\n" . $insert1, $file_contents);
         $file_contents = str_replace($search, $search . "\n\n" . $insert, $file_contents);
     
         // Dosyayı yeniden yazın
+        file_put_contents($route_path, $file_contents1);
         file_put_contents($route_path, $file_contents);
         $this->info('- Do:Rell # "Routes has been updated.');
     
