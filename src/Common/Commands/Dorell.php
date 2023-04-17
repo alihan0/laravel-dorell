@@ -98,7 +98,7 @@ class '.$controller_name.' extends Controller
             $this->response["status"] = true;
         }else{
             $this->reponse["type"] = "error";
-            $this->response["message] = "SYSTEM_ERROR: Unknown insert failure";
+            $this->response["message"] = "SYSTEM_ERROR: Unknown insert failure";
         }
         return $this->response;
     }
