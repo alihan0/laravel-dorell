@@ -150,17 +150,17 @@ class '.$controller_name.' extends Controller
         $file_contents = file_get_contents($route_path);
         $search = '});';
         $insert = '
-        
-        /n/n/n
-        Route::controller('.$controller_name.'::class)->prefix('.$name.')->group(function(){
-            Route::get("/", "all");
-            Route::get("/detail/{id}", "detail");
-            Route::get("/new", "new");
-            Route::get("/edit/{id}", "edit");
-            Route::post("/add", "add");
-            Route::post("/update", "update");
-            Route::post("/delete", "delete");
-        });
+
+// '.$name.' GROUP
+Route::controller('.$controller_name.'::class)->prefix('.$name.')->group(function(){
+    Route::get("/", "all");
+    Route::get("/detail/{id}", "detail");
+    Route::get("/new", "new");
+    Route::get("/edit/{id}", "edit");
+    Route::post("/add", "add");
+    Route::post("/update", "update");
+    Route::post("/delete", "delete");
+});
         ';
     
         // Dosyada search string'i arayın ve insert string'ini sonrasına ekleyin
