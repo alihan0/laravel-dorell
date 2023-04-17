@@ -144,6 +144,27 @@ class '.$controller_name.' extends Controller
         } else {
             $this->info('- Do:Rell !! Controller File not found! : ' .$controller_name);
         }
+
+
+        $view_path = '/resourves/views/';
+        if(!file_exists($view_path.'rell') || !file_exists($view_path.'admin') || !file_exists($view_path.'rell/layout')){
+            mkdir($view_path.'rell');
+            mkdir($view_path.'rell/layout');
+            mkdir($view_path.'rell/layout/auth');
+            mkdir($view_path.'rell/layout/main');
+
+            mkdir($view_path.'admin');
+            mkdir($view_path.'admin/layout');
+            mkdir($view_path.'admin/layout/auth');
+            mkdir($view_path.'admin/layout/main');
+
+            touch($view_path.'rell/master.blade.php');
+            touch($view_path.'rell/auth.blade.php');
+            touch($view_path.'admin/master.blade.php');
+            touch($view_path.'admin/auth.blade.php');
+        }
+
+
         
 
     }
