@@ -65,7 +65,7 @@ class '.$controller_name.' extends Controller
 {
 
     // Response all post
-    protectef $response = ["type" => "warning", "message" => "'.$controller_name.' Response", "status" => false];
+    protected $response = ["type" => "warning", "message" => "'.$controller_name.' Response", "status" => false];
 
     // List All Datas
     public function all(){
