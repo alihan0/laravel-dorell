@@ -146,9 +146,8 @@ class '.$controller_name.' extends Controller
         }
 
 
-        $route_path = '/routes/';
-        $route_file = $route_path.'web.php';
-        $file_contents = file_get_contents($route_file);
+        $route_path = base_path('routes/web.php');
+        $file_contents = file_get_contents($route_path);
         $search = 'Route::get';
         $insert = '
         
@@ -168,7 +167,7 @@ class '.$controller_name.' extends Controller
         $file_contents = str_replace($search, $search . "\n\n" . $insert, $file_contents);
     
         // Dosyayı yeniden yazın
-        file_put_contents($route_file, $file_contents);
+        file_put_contents($route_path, $file_contents);
         $this->info('- Do:Rell # "Routes has been updated.');
     
 
