@@ -152,7 +152,8 @@ class '.$controller_name.' extends Controller
         $insert = '
 
 // '.$name.' GROUP
-Route::controller('.$controller_name.'::class)->prefix('.$name.')->group(function(){
+use App\Http\Controllers\\'.$controller_name.';
+Route::controller('.$controller_name.'::class)->prefix("'.$name.'")->group(function(){
     Route::get("/", "all");
     Route::get("/detail/{id}", "detail");
     Route::get("/new", "new");
