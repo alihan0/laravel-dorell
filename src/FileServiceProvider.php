@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Console\Command;
 
-class FileServiceProvider extends ServiceProvider
+class FileServiceProvider extends Command
 {
     /**
      * Bootstrap any application services.
