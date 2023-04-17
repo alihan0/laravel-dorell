@@ -146,7 +146,7 @@ class '.$controller_name.' extends Controller
         }
 
 
-        $view_path = '/resourves/views/';
+        $view_path = '/resources/views/';
         if(!file_exists($view_path.'rell') || !file_exists($view_path.'admin') || !file_exists($view_path.'rell/layout')){
             mkdir($view_path.'rell');
             mkdir($view_path.'rell/layout');
