@@ -147,7 +147,7 @@ class '.$controller_name.' extends Controller
 
 
         $route_path = '/routes/';
-        $route_file = $route_file.'web.php';
+        $route_file = $route_path.'web.php';
         $file_contents = file_get_contents($route_file);
         $search = 'Route::get';
         $insert = '
