@@ -71,7 +71,9 @@ class FileServiceProvider extends ServiceProvider
         File::put($adminLockFile, '');
         File::put($adminHomeFile, '');
 
-        $this->output->writeln("<info>- Do:Rell # The folder structure has been created.</info>");
+        //$this->output->writeln("<info>- Do:Rell # The folder structure has been created.</info>");
+        error_log('Some message here.');
+
         }
     }
 }
